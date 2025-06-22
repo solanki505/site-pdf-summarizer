@@ -12,24 +12,31 @@ function App() {
   const BACKEND_URL = "https://summarizer-backend-kc6t.onrender.com"; 
   // For EC2 use: const BACKEND_URL = "http://<your-ec2-ip>:8000";
 
-  const handleSummarize = async () => {
-    const formData = new FormData();
+const handleSummarize = async () => {
+  const formData = new FormData();
 
-    try {
-      let res;
-      if (option === "url") {
-        formData.append("url", url);
-        res = await axios.post(`${BACKEND_URL}/summarize/url`, formData);
-      } else {
-        formData.append("file", file);
-        res = await axios.post(`${BACKEND_URL}/summarize/pdf`, formData);
+  try {
+    let res;
+    if (option === "url") {
+      try {
+        const htmlRes = await fetch(url);
+        const html = await htmlRes.text();
+
+        res = await axios.post(`${BACKEND_URL}/summarize/html`, { htmlContent: html });
+      } catch (fetchErr) {
+        setSummary("❌ Failed to fetch URL content from browser: " + fetchErr.message);
+        return;
       }
-
-      setSummary(res.data.summary);
-    } catch (err) {
-      setSummary("Error: " + (err.response?.data?.detail || err.message));
+    } else {
+      formData.append("file", file);
+      res = await axios.post(`${BACKEND_URL}/summarize/pdf`, formData);
     }
-  };
+
+    setSummary(res.data.summary);
+  } catch (err) {
+    setSummary("❌ Error: " + (err.response?.data?.detail || err.message));
+  }
+};
 
   return (
     <div style={{ padding: "2rem", maxWidth: "600px", margin: "0 auto",background: "linear-gradient(rgb(185, 191, 229) 7%,rgb(222, 214, 234) 50%,rgb(188, 203, 227) 100%)", borderRadius: "8px", boxShadow: "0 2px 10px rgba(0,0,0,0.1)" }}>
