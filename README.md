@@ -38,7 +38,7 @@ site-pdf-summarizer/<br>
 │<br>
 ├── requirements.txt # Backend dependencies<br>
 └── README.md<br>
-#Setup Frontend
+# Setup Frontend
 ```bash
 cd frontend
 npm install
