@@ -53,6 +53,6 @@ cd backend
 pip install -r requirements.txt
 uvicorn main:app --reload
 ```
-create .env
+create .env file and add <br>
 GROQ_API_KEY=your_groq_key
 
