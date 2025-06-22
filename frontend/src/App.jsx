@@ -9,7 +9,7 @@ function App() {
   const [summary, setSummary] = useState("");
 
   // ✅ Change this to your actual backend URL when deployed
-  const BACKEND_URL = "http://127.0.0.1:8000"; 
+  const BACKEND_URL = "https://summarizer-backend-kc6t.onrender.com"; 
   // For EC2 use: const BACKEND_URL = "http://<your-ec2-ip>:8000";
 
   const handleSummarize = async () => {
