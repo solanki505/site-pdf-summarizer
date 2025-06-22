@@ -12,3 +12,4 @@ groq
 httpx
 pydantic
 pydantic-settings
+beautifulsoup4
