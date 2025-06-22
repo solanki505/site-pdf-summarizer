@@ -1,5 +1,5 @@
 # 📄 Website & PDF Summarizer
-
+https://github.com/user-attachments/assets/f2fb55cd-0079-4bac-9e09-b8e00c3dd548
 A full-stack application to **summarize articles from a website URL or uploaded PDF**.  
 Built with **React (Vite) + FastAPI + LangChain + Groq API**.
 
