@@ -2,7 +2,13 @@ fastapi
 uvicorn
 langchain
 langchain-community
+langchain-core
 langchain-groq
+langchain-text-splitters
 python-dotenv
 pdfminer.six
 python-multipart
+groq
+httpx
+pydantic
+pydantic-settings
