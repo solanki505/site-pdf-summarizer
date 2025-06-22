@@ -24,20 +24,20 @@ Built with **React (Vite) + FastAPI + LangChain + Groq API**.
 
 ## 📁 Project Structure
 
-site-pdf-summarizer/
-│
-├── frontend/ # Vite + React app
-│ ├── App.jsx
-│ ├── main.jsx
-│ ├── style.css
-│ └── vite.config.js
-│
-├── backend/ # FastAPI backend
-│ ├── main.py # API endpoints
-│ └── summarizer.py # Summarization logic
-│
-├── requirements.txt # Backend dependencies
-└── README.md
+site-pdf-summarizer/<br>
+│<br>
+├── frontend/ # Vite + React app<br>
+│ ├── App.jsx<br>
+│ ├── main.jsx<br>
+│ ├── style.css<br>
+│ └── vite.config.js<br>
+│<br>
+├── backend/ # FastAPI backend<br>
+│ ├── main.py # API endpoints<br>
+│ └── summarizer.py # Summarization logic<br>
+│<br>
+├── requirements.txt # Backend dependencies<br>
+└── README.md<br>
 #2. Setup Frontend
 ```bash
 cd frontend
