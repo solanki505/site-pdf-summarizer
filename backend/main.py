@@ -1,10 +1,10 @@
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
-from summarizer import summarize_url, summarize_pdf_file
+from pydantic import BaseModel
+from summarizer import summarize_content, summarize_pdf_file
 
 app = FastAPI()
 
-# Allow all CORS origins for dev
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["*"],
@@ -12,9 +12,12 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.post("/summarize/url")
-async def summarize_url_api(url: str = Form(...)):
-    return {"summary": summarize_url(url)}
+class HtmlInput(BaseModel):
+    htmlContent: str
+
+@app.post("/summarize/html")
+async def summarize_html_api(input: HtmlInput):
+    return {"summary": summarize_content(input.htmlContent)}
 
 @app.post("/summarize/pdf")
 async def summarize_pdf_api(file: UploadFile = File(...)):
