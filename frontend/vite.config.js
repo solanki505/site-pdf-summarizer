@@ -3,5 +3,5 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig({
   plugins: [react()],
-  base: './', // <- for local builds (optional)
+  base: '/site-pdf-summarizer/', // <- for local builds (optional)
 });
