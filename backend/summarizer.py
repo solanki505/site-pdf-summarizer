@@ -9,7 +9,7 @@ load_dotenv()
 # Initialize model
 model = ChatGroq(model_name="llama3-8b-8192", groq_api_key=os.getenv("GROQ_API_KEY"))
 
-def summarize_content(html_text: str) -> str:
+def summarize_url(html_text: str) -> str:
     soup = BeautifulSoup(html_text, "html.parser")
     text = soup.get_text()
     prompt = f"Summarize this content:\n{text}"
