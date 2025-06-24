@@ -8,16 +8,13 @@ function App() {
   const [file, setFile] = useState(null);
   const [summary, setSummary] = useState("");
 
-  // ✅ Make sure this matches your backend
   const BACKEND_URL = "http://ec2-16-171-19-9.eu-north-1.compute.amazonaws.com:8000";
 
   const handleSummarize = async () => {
     try {
       let res;
       if (option === "url") {
-        const htmlRes = await fetch(url);
-        const html = await htmlRes.text();
-        res = await axios.post(`${BACKEND_URL}/summarize-url`, { html });
+        res = await axios.post(`${BACKEND_URL}/summarize-url`, { url });
       } else {
         const formData = new FormData();
         formData.append("file", file);
@@ -32,37 +29,20 @@ function App() {
   };
 
   return (
-    <div style={{ padding: "2rem", maxWidth: "600px", margin: "0 auto", background: "linear-gradient(#b9bfe5, #ded6ea, #bccbe3)", borderRadius: "8px", boxShadow: "0 2px 10px rgba(0,0,0,0.1)" }}>
+    <div style={{ padding: "2rem", maxWidth: "600px", margin: "0 auto", background: "#f5f5ff", borderRadius: "8px" }}>
       <h2 style={{ textAlign: "center", fontFamily: 'cursive', color: "#141651" }}>📄 Website or PDF Summarizer</h2>
-
-      <select style={{ borderRadius: "1rem", padding: "0.5rem", background: "#bea9bd" }} value={option} onChange={e => setOption(e.target.value)}>
+      <select value={option} onChange={e => setOption(e.target.value)}>
         <option value="url">Website URL</option>
         <option value="pdf">Upload PDF</option>
       </select>
-
       {option === "url" ? (
-        <input
-          type="text"
-          placeholder="Enter URL"
-          value={url}
-          onChange={e => setUrl(e.target.value)}
-          style={{ borderRadius: "0.5rem", width: "100%", marginTop: "1rem", padding: "0.5rem" }}
-        />
+        <input type="text" value={url} onChange={e => setUrl(e.target.value)} placeholder="Enter website URL" />
       ) : (
-        <input
-          type="file"
-          accept="application/pdf"
-          onChange={e => setFile(e.target.files[0])}
-          style={{ marginTop: "1rem" }}
-        />
+        <input type="file" accept="application/pdf" onChange={e => setFile(e.target.files[0])} />
       )}
-
-      <button onClick={handleSummarize} style={{ borderRadius: "1rem", marginTop: "1rem", padding: "0.5rem 1rem" }}>
-        Summarize
-      </button>
-
+      <button onClick={handleSummarize}>Summarize</button>
       {summary && (
-        <div style={{ marginTop: "2rem" }}>
+        <div>
           <h3>📝 Summary:</h3>
           <p>{summary}</p>
         </div>
