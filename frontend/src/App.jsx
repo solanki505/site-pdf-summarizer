@@ -7,8 +7,8 @@ function App() {
   const [url, setUrl] = useState("");
   const [file, setFile] = useState(null);
   const [summary, setSummary] = useState("");
+  const BACKEND_URL = "http://ec2-16-171-19-9.eu-north-1.compute.amazonaws.com:8000";
 
-  const BACKEND_URL = "https://summarizer-backend-kc6t.onrender.com";
 
   const handleSummarize = async () => {
     const formData = new FormData();
